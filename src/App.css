@@ -1,0 +1,16 @@
+.cardIcons{
+  justify-content: center;
+}
+
+.mainpage{
+  background-image: url(https://assets.awwwards.com/awards/images/2015/04/pattern.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.logincard{
+  padding-top: 15vh;
+}
