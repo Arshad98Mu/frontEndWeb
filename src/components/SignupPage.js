@@ -64,7 +64,7 @@ class SignupPage extends React.Component {
                       <Button
                         variant="outline-light"
                         onClick={() => {
-                          this.notify();
+                          
                           this.props.setInitialPage("login");
                         }}
                       >
