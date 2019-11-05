@@ -1,30 +1,31 @@
-import React from "react";
-import "./App.css";
-import SigninPage from "./components/signinPage";
-import SignupPage from "./components/SignupPage";
+import React,{Component} from 'react';
+import SigninPage from './components/SigninPage';
+import SignupPage from './components/SignupPage';
+import Home from './components/Home';
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initialPage: "login"
+      currentPage: "home"
     };
   }
 
-  setInitialPage = value => {
+  setCurrentPage = value => {
     this.setState({
-      initialPage: value
+      currentPage: value
     });
-  };
+  }
 
   render() {
     return (
       <div>
-        {this.state.initialPage === "login" ? (
-          <SigninPage setInitialPage={this.setInitialPage} />
-        ) : (
-          <SignupPage setInitialPage={this.setInitialPage} />
-        )}
+        { this.state.currentPage === "signin" ? (
+          <SigninPage setCurrentPage = {this.setCurrentPage} />
+        ) : this.state.currentPage === "signup" ? (
+        <SignupPage setCurrentPage = {this.setCurrentPage} />
+        ) : <Home setCurrentPage = {this.setCurrentPage} />
+        }
       </div>
     );
   }
