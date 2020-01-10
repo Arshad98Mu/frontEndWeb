@@ -15,6 +15,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import ChatIcon from '@material-ui/icons/Chat';
 
 import React from 'react';
 
@@ -165,22 +166,20 @@ const Navbar = (props) => {
                     ))}
                 </List>
                 <Divider />
+                
                 <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button key="Chat">
+                        <ListItemIcon> <ChatIcon /> </ListItemIcon>
+                        <ListItemText primary="Chat" />
+                    </ListItem>                    
                 </List>
                 <Divider />
+
                 <List>
-                    {['Profile'].map((text) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon><AccountCircle /></ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button key="Profile">
+                        <ListItemIcon><AccountCircle /></ListItemIcon>
+                        <ListItemText primary="Profile"/>
+                    </ListItem>
                 </List>
             </Drawer>
         </div>
