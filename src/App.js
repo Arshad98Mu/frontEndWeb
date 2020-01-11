@@ -3,6 +3,8 @@ import SigninPage from './components/SigninPage';
 import SignupPage from './components/SignupPage';
 import Home from './components/Home';
 import ChatTest from './components/ChatTest';
+import IntroScreen from './components/Intro/IntroScreen';
+import Dashboard from './components/Dashboard/Dashoard';
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class App extends Component {
         { this.state.currentPage === "signin" ? (
           <SigninPage setCurrentPage = {this.setCurrentPage} />
         ) : this.state.currentPage === "chattest" ? (
-          <ChatTest />
+          <Dashboard />
         ) : this.state.currentPage === "signup" ? (
           <SignupPage setCurrentPage = {this.setCurrentPage} />
         ) : <Home setCurrentPage = {this.setCurrentPage} />
