@@ -168,7 +168,7 @@ export default function PersistentDrawerLeft() {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const [isProfileOpen,profileOpen] = React.useState(false);
+    const [isProfileOpen,profileOpen] = React.useState(true);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -340,6 +340,7 @@ export default function PersistentDrawerLeft() {
                 classes={{
                     paper: classes.drawerPaper,
                 }}
+                //style={{backgroundColor:"#115293"}}
             >
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={handleDrawerClose}>
@@ -348,16 +349,7 @@ export default function PersistentDrawerLeft() {
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                    {['Chat', 'Enter Community', 'Discussion', 'Settings', 'Profile'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
