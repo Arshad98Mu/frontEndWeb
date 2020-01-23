@@ -30,23 +30,31 @@ class App extends Component {
   render() {
     return (
       <div>
-        <FirebaseContext.Consumer>
-          {this.state.currentPage === "signin" ? (
-            <SigninPage setCurrentPage={this.setCurrentPage} />
-          ) : this.state.currentPage === "chattest" ? (
-            <NewIntroPage />
-          ) : this.state.currentPage === "signup" ? (
-            //<SignupPage setCurrentPage={this.setCurrentPage} />
-            firebase => (
+        {this.state.currentPage === "signin" ? (
+           <FirebaseContext.Consumer>
+          
+          {firebase => (
+              <SigninPage
+                firebase={firebase}
+                setCurrentPage={this.setCurrentPage}
+              />
+            )}
+          </FirebaseContext.Consumer>
+        ) : this.state.currentPage === "chattest" ? (
+          <NewIntroPage />
+        ) : this.state.currentPage === "signup" ? (
+          //<SignupPage setCurrentPage={this.setCurrentPage} />
+          <FirebaseContext.Consumer>
+            {firebase => (
               <SignupPage
                 firebase={firebase}
                 setCurrentPage={this.setCurrentPage}
               />
-            )
-          ) : (
-            <Home setCurrentPage={this.setCurrentPage} />
-          )}
-        </FirebaseContext.Consumer>
+            )}
+          </FirebaseContext.Consumer>
+        ) : (
+          <Home setCurrentPage={this.setCurrentPage} />
+        )}
       </div>
     );
   }
