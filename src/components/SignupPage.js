@@ -28,7 +28,7 @@ class SignupPage extends Component {
     };
   }
 
-  signup = () => {
+  signup = async () => {
     let sendObject = {
       firstname: this.state.firstname,
       lastname: this.state.lastname,
@@ -53,14 +53,13 @@ class SignupPage extends Component {
         //this.setState({ ...INITIAL_STATE });
         ToastsStore.success("User Created Successfully");
         console.log("Auth user  ", authUser);
+        this.props.setCurrentPage("home");
       })
       .catch(error => {
         ToastsStore.error(error.message);
         console.log("auth error", error);
         //this.setState({ error });
       });
-
-    //this.props.setCurrentPage("home");
   };
 
   render() {
@@ -84,7 +83,7 @@ class SignupPage extends Component {
                   <p>or use your email account</p>
 
                   <div>
-                    <Form.Group>
+                    {/* <Form.Group>
                       <Form.Control
                         placeholder="Enter firstname"
                         onChange={event =>
@@ -99,7 +98,7 @@ class SignupPage extends Component {
                           this.setState({ lastname: event.target.value })
                         }
                       />
-                    </Form.Group>
+                    </Form.Group> */}
                     <Form.Group>
                       <Form.Control
                         placeholder="Enter email"
