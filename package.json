@@ -15,7 +15,8 @@
     "react-dom": "^16.10.1",
     "react-firebase": "^2.2.8",
     "react-scripts": "3.1.2",
-    "react-toasts": "^3.0.6"
+    "react-toasts": "^3.0.6",
+    "react-router-dom": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

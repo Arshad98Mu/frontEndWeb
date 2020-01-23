@@ -133,18 +133,20 @@ const Navbar = (props) => {
                 </Toolbar>
             </AppBar>
             <Drawer
+                 style = {{width : "600px"}}
+                open = {false}
                 variant="permanent"
-                className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: openDrawer,
-                    [classes.drawerClose]: !openDrawer,
-                })}
-                classes={{
-                    paper: clsx({
-                        [classes.drawerOpen]: openDrawer,
-                        [classes.drawerClose]: !openDrawer,
-                    }),
-                }}
-                openDrawer={openDrawer}
+                // className={clsx(classes.drawer, {
+                //     [classes.drawerOpen]: openDrawer,
+                //     [classes.drawerClose]: !openDrawer,
+                // })}
+                // classes={{
+                //     paper: clsx({
+                //         [classes.drawerOpen]: openDrawer,
+                //         [classes.drawerClose]: !openDrawer,
+                //     }),
+                // }}
+                //openDrawer={openDrawer}
             >
                 <div className={classes.toolbar}>
                     <IconButton
@@ -158,7 +160,7 @@ const Navbar = (props) => {
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    {['Dashboard', 'Chat', 'Settings', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
