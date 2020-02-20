@@ -4,7 +4,6 @@ import { Paper, TextField } from '@material-ui/core';
 
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import Form from 'react-bootstrap/FormControl';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,52 +40,52 @@ export default function ChatContent() {
         <div className={classes.root} >
             <Paper variant="outlined" >
                 <div className={classes.mainContainer}>
-                    <Card className={classes.cardother} >
+                    <Card className={classes.cardself} >
                         <Typography variant="body2">
                             You know what I love the most about you?
                         </Typography>
                     </Card>
-                    <Card className={classes.cardself}>
+                    <Card className={classes.cardother}>
                         <Typography variant="body2">
                             What?
                         </Typography>
                     </Card>
-                    <Card className={classes.cardother}>
+                    <Card className={classes.cardself}>
                         <Typography variant="body2">
                             That you're a strong. independent women... 
                         </Typography>
                     </Card>
-                    <Card className={classes.cardself}>
+                    <Card className={classes.cardother}>
                         <Typography variant="body2">
                             Awww!! Thanks, love!
                         </Typography>
                     </Card>
-                    <Card className={classes.cardother}>
+                    <Card className={classes.cardself}>
                         <Typography variant="body2" >
                             Who doesn't need any man to feel complete...   
                         </Typography>
                     </Card>
-                    <Card className={classes.cardself}>
+                    <Card className={classes.cardother}>
                         <Typography variant="body2">
                             Hmmmm...Okay
                         </Typography>
                     </Card>
-                    <Card className={classes.cardother}>
+                    <Card className={classes.cardself}>
                         <Typography variant="body2">
                             I think me being with you is an insult to your free spirit  
                         </Typography>
                     </Card>
-                    <Card className={classes.cardself}>
+                    <Card className={classes.cardother}>
                         <Typography variant="body2" >
                             Wait, are you breaking up with me?
                         </Typography>
                     </Card>
-                    <Card className={classes.cardother}>
+                    <Card className={classes.cardself}>
                         <Typography variant="body2" >
                             I'm only doing it for you... 
                         </Typography>
                     </Card>
-                    <Card className={classes.cardself}>
+                    <Card className={classes.cardother}>
                         <Typography variant="body2" >
                             Go to hell...
                         </Typography>

@@ -40,7 +40,7 @@ class SigninPage extends Component {
                 <Container>
                     <Row>
                         
-                        <Col sm={ 8, 8, 12 } md={{ span: 8, order: 1 }}>
+                        <Col md={{ span: 8, order: 1 }}>
                             <Card border="warning" className="cardit">
                                 <Card.Body className="centercard">
                                     <Card.Title>Sign in with</Card.Title>

@@ -1,95 +1,41 @@
-import React from 'react';
-import clsx from 'clsx';
-import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { useState, useEffect } from 'react';
+//from material-ui start
+import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
+import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import Profile from '../Settings/profile';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ChatIcon from '@material-ui/icons/Chat';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+//from material-ui end
 
-import InitialDashboard from './InitialDashboard';
-
-const drawerWidth = 240;
-
+//Assets
+import MainLogo from '../NewAssets/MainLogo.png';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-    },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
+    //for appbar start
+    grow: {
+        flexGrow: 1,
     },
     menuButton: {
         marginRight: theme.spacing(2),
-    },
-    hide: {
-        display: 'none',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    drawerHeader: {
-        display: 'flex',
-        alignItems: 'center',
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: -drawerWidth,
-    },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-    },
-
-
-    grow: {
-        flexGrow: 1,
     },
     title: {
         display: 'none',
@@ -144,26 +90,22 @@ const useStyles = makeStyles(theme => ({
             display: 'none',
         },
     },
+    //for appbar end
+    //for drawer start
+    list: {
+        width: 250,
+    },
+    fullList: {
+        width: 'auto',
+    },
+    //for drawer end
 }));
 
-export default function PersistentDrawerLeft() {
+function NavbarAndDrawer() {
+    //for appbar start
     const classes = useStyles();
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-
-
-
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const [isProfileOpen,profileOpen] = React.useState(true);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -196,10 +138,7 @@ export default function PersistentDrawerLeft() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={()=>{profileOpen(!isProfileOpen)
-                handleMenuClose();
-             
-            }}>Profile</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </Menu>
     );
@@ -237,7 +176,6 @@ export default function PersistentDrawerLeft() {
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
                     color="inherit"
-                    
                 >
                     <AccountCircle />
                 </IconButton>
@@ -245,33 +183,73 @@ export default function PersistentDrawerLeft() {
             </MenuItem>
         </Menu>
     );
+    //for appbar end
+    //new notification or message start
+        const [unreadNotification, setunreadNotification] = useState(17);
+        const [unreadMessage, setUnreadMessage] = useState(5);
+    //new notification or message end
+    //for drawer start
+    const [state, setState] = React.useState({ left: false });
 
+    const toggleDrawer = (side, open) => event => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
 
+        setState({ ...state, [side]: open });
+    };
+
+    const sideList = side => (
+        //icon options inside drawer
+        <div
+            className={classes.list}
+            role="presentation"
+            onClick={toggleDrawer(side, false)}
+            onKeyDown={toggleDrawer(side, false)}
+        >
+            <List>
+                <ListItem button>
+                    <ListItemIcon><ChatIcon/></ListItemIcon>
+                    <ListItemText>Chat</ListItemText>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon><SupervisorAccountIcon /></ListItemIcon>
+                    <ListItemText>EnterCommunity</ListItemText>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon><SupervisorAccountIcon /></ListItemIcon>
+                    <ListItemText>Discussion</ListItemText>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon><SettingsApplicationsIcon /></ListItemIcon>
+                    <ListItemText>Settings</ListItemText>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+                    <ListItemText>Profile</ListItemText>
+                </ListItem>
+            </List>
+            )
+        </div>
+    );
+    //for drawer end
 
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
+        <div className={classes.grow}>
+            <AppBar position="fixed" color="transparent" >
                 <Toolbar>
                     <IconButton
+                        edge="start"
+                        className={classes.menuButton}
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
+                        onClick={toggleDrawer('left', true)}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Harmony
-                    </Typography>
-
-
+                    <IconButton>
+                        <img src={MainLogo} alt="Harmony" style={{ height: 40 }} />
+                    </IconButton>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -285,17 +263,15 @@ export default function PersistentDrawerLeft() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </div>
-
                     <div className={classes.grow} />
-
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
+                            <Badge badgeContent={unreadMessage} color="secondary">
                                 <MailIcon />
                             </Badge>
                         </IconButton>
                         <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
+                            <Badge badgeContent={unreadNotification} color="secondary">
                                 <NotificationsIcon />
                             </Badge>
                         </IconButton>
@@ -323,49 +299,14 @@ export default function PersistentDrawerLeft() {
                     </div>
                 </Toolbar>
             </AppBar>
-
             {renderMobileMenu}
             {renderMenu}
 
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                //style={{backgroundColor:"#1976d2"}}
-            >
-                <div className={classes.drawerHeader} style={{backgroundColor:"#1976d2"}}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                
-                <List style={{backgroundColor:"#1976d2"}}>
-                    {['Chat', 'Enter Community', 'Discussion', 'Settings', 'Profile'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-            </Drawer>
-            <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: open,
-                })}
-            >
-                <div className={classes.drawerHeader} />
-                { isProfileOpen  ? <div>
-                
-                <InitialDashboard />
-
-        </div>
-         :
-                    <Profile />}
-            </main>
+            <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+                {sideList('left')}
+            </Drawer> 
         </div>
     );
 }
+
+export default NavbarAndDrawer;

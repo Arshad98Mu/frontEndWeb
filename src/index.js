@@ -19,22 +19,19 @@ ReactDOM.render(<Router>
     
     </Router>, document.getElementById('root'));
 
-{/* <Router>
-<Provider store={store}>
-  <Notifications options={{ zIndex: 2000 }} />
-  <Switch>
-    <Route exact path={"/"} component={App} />
-    <Route path={"/login"} component={LoginComponent} />
-    <Route path={"/signUp"} component={SignUpComponent} />
-    <Route path={"/forgot"} component={ForgotPassword} />
-    <Route path={"/otp"} component={OtpCheck} />
-    <Route path={"/verify"} component={NewPasswordOtp} />
-    <Route component={NotFoundPage} />
-  </Switch>
-</Provider>
-</Router> */}
+//<Router>
+//  <Provider store={store}>
+//    <Notifications options={{ zIndex: 2000 }} />
+//    <Switch>
+//      <Route exact path={"/"} component={App} />
+//      <Route path={"/login"} component={LoginComponent} />
+//      <Route path={"/signUp"} component={SignUpComponent} />
+//      <Route path={"/forgot"} component={ForgotPassword} />
+//      <Route path={"/otp"} component={OtpCheck} />
+//      <Route path={"/verify"} component={NewPasswordOtp} />
+//      <Route component={NotFoundPage} />
+//    </Switch>
+//</Provider>
+//</Router>
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
